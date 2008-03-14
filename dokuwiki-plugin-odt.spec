@@ -1,8 +1,9 @@
 %define		plugin		odt
-Summary:	DokuWiki Open Office Export Plugin
+Summary:	DokuWiki odt (Open Document Text) Export Plugin
+Summary(pl-UTF8):	Wtyczka do eksportowania plików odt (Open Document Text)
 Name:		dokuwiki-plugin-%{plugin}
 Version:	20080219
-Release:	0.1
+Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://wiki.splitbrain.org/_media/plugin:odt-plugin-2008-02-19.tgz
@@ -23,6 +24,13 @@ used by Open Office and other word processors. This is especially
 useful when you need to give a single page to a customer
 
 Hint: Open Office can also export to PDF.
+
+%description -l pl-UTF8
+Ta wtyczka pozwala na eksportowanie strony do formatu OpenDocument,
+używanego przez Open Office i inne edytory tekstu. Przydatna jest
+w sytuacji w której musisz dać pojedyńczą stronę klientowi.
+
+Podpowiedź: Open Office pozwala także na eksportowanie do PDF.
 
 %prep
 %setup -q -n %{plugin}
