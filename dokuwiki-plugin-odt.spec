@@ -15,7 +15,7 @@ Requires:	dokuwiki >= 20070626
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		dokudir	/usr/share/dokuwiki
+%define		dokudir		/usr/share/dokuwiki
 %define		plugindir	%{dokudir}/lib/plugins/%{plugin}
 
 %description
