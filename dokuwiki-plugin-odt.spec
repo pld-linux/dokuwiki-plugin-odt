@@ -2,14 +2,13 @@
 Summary:	DokuWiki odt (Open Document Text) Export Plugin
 Summary(pl-UTF8):	Wtyczka do eksportowania plików odt (Open Document Text)
 Name:		dokuwiki-plugin-%{plugin}
-Version:	20080219
+Version:	20080507
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://wiki.splitbrain.org/_media/plugin:odt-plugin-2008-02-19.tgz
-# Source0-md5:	f79363c82281978e274442164581d91a
+Source0:	http://gauret.free.fr/fichiers/dokuwiki/dokuwiki-odt-%{version}.tgz
+# Source0-md5:	
 Source1:	dokuwiki-find-lang.sh
-Patch0:		http://gauret.free.fr/fichiers/dokuwiki/dokuwiki-odt-20070626.patch
 URL:		http://wiki.splitbrain.org/plugin:odt
 Requires:	dokuwiki >= 20070626
 BuildArch:	noarch
@@ -34,12 +33,12 @@ Podpowiedź: Open Office pozwala także na eksportowanie do PDF.
 
 %prep
 %setup -q -n %{plugin}
-%patch0 -p1
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{plugindir}
 cp -a . $RPM_BUILD_ROOT%{plugindir}
+rm -f $RPM_BUILD_ROOT%{plugindir}/{ChangeLog,.gitignore}
 
 # find locales
 sh %{SOURCE1} %{name}.lang
@@ -48,9 +47,12 @@ sh %{SOURCE1} %{name}.lang
 rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
+%doc ChangeLog
 %defattr(644,root,root,755)
 %dir %{plugindir}
 %{plugindir}/*.txt
 %{plugindir}/*.png
 %{plugindir}/*.xml
 %{plugindir}/*.php
+%dir %{plugindir}/conf
+%{plugindir}/conf/*.php
