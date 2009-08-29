@@ -1,0 +1,21 @@
+--- odt/renderer.php~	2009-07-02 21:19:54.000000000 +0300
++++ odt/renderer.php	2009-08-29 23:15:39.131348492 +0300
+@@ -10,17 +10,7 @@
+ if(!defined('DOKU_INC')) die();
+ 
+ require_once DOKU_INC.'inc/parser/renderer.php';
+-
+-// ZipLib.class.php
+-$dw_version = preg_replace('/[^\d]/', '', getversion());
+-if (version_compare($dw_version, "20070626") and 
+-    version_compare(PHP_VERSION,'5.0.0','>')) {
+-    // If strictly newer than 2007-06-26 and use PHP5, fixes to ZipLib are
+-    // included in Dokuwiki's ZipLib
+-    require_once DOKU_INC.'inc/ZipLib.class.php';
+-} else { // for DW up to 2007-06-26, we need the patched version
+-    require_once 'ZipLib.class.php';
+-}
++require_once DOKU_INC.'inc/ZipLib.class.php';
+ 
+ /**
+  * The Renderer
