@@ -8,8 +8,9 @@ License:	GPL v2
 Group:		Applications/WWW
 Source0:	http://gauret.free.fr/fichiers/dokuwiki/dokuwiki-odt-%{version}.zip
 # Source0-md5:	ffee0778f67a50d4bcf838e2054f7341
-URL:		http://wiki.splitbrain.org/plugin:odt
 Patch0:		dokuwiki-ziplib.patch
+URL:		http://wiki.splitbrain.org/plugin:odt
+BuildRequires:	unzip
 Requires:	dokuwiki >= 20070626
 Requires:	php-common >= 4:5.0
 BuildArch:	noarch
