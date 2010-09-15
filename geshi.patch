@@ -1,0 +1,13 @@
+--- dokuwiki-plugin-odt-20100812/renderer.php~	2010-09-15 12:18:41.000000000 +0300
++++ dokuwiki-plugin-odt-20100812/renderer.php	2010-09-15 12:21:24.009399926 +0300
+@@ -892,8 +892,8 @@
+         }
+ 
+         // from inc/parserutils.php:p_xhtml_cached_geshi()
+-        require_once(DOKU_INC . 'inc/geshi.php');
+-        $geshi = new GeSHi($text, $language, DOKU_INC . 'inc/geshi');
++        require_once '/usr/share/php/geshi.php';
++        $geshi = new GeSHi($text, $language);
+         $geshi->set_encoding('utf-8');
+         // $geshi->enable_classes(); DO NOT WANT !
+         $geshi->set_header_type(GESHI_HEADER_PRE);
