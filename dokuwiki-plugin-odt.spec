@@ -2,12 +2,12 @@
 Summary:	DokuWiki odt (Open Document Text) Export Plugin
 Summary(pl.UTF-8):	Wtyczka do eksportowania plików odt (Open Document Text)
 Name:		dokuwiki-plugin-%{plugin}
-Version:	20100812
+Version:	20101030
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://aurelien.bompard.org/projects/files/dokuwiki-odt/dokuwiki-odt-20100812.zip
-# Source0-md5:	28839a411068e2c923c74734e35481ff
+Source0:	http://aurelien.bompard.org/projects/files/dokuwiki-odt/dokuwiki-odt-%{version}.zip
+# Source0-md5:	511b25c1273624021c6425bf3d30fcc0
 Patch0:		dokuwiki-ziplib.patch
 Patch1:		geshi.patch
 URL:		http://wiki.splitbrain.org/plugin:odt
@@ -77,5 +77,4 @@ fi
 %{plugindir}/*.png
 %{plugindir}/*.xml
 %{plugindir}/*.php
-%dir %{plugindir}/conf
-%{plugindir}/conf/*.php
+%{plugindir}/conf
