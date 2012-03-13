@@ -2,16 +2,16 @@
 Summary:	DokuWiki odt (Open Document Text) Export Plugin
 Summary(pl.UTF-8):	Wtyczka do eksportowania plików odt (Open Document Text)
 Name:		dokuwiki-plugin-%{plugin}
-Version:	20101030
+Version:	20110616
 Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	http://aurelien.bompard.org/projects/files/dokuwiki-odt/dokuwiki-odt-%{version}.zip
-# Source0-md5:	511b25c1273624021c6425bf3d30fcc0
+#Source0:	http://aurelien.bompard.org/projects/files/dokuwiki-odt/dokuwiki-odt-%{version}.zip
+Source0:	http://gitorious.org/dokuwiki-odt/dokuwiki-odt/archive-tarball/master#/%{name}-%{version}.tgz
+# Source0-md5:	a30fe453e3036014c82e5b5e9a7c47b0
 Patch0:		dokuwiki-ziplib.patch
 Patch1:		geshi.patch
-URL:		http://wiki.splitbrain.org/plugin:odt
-BuildRequires:	unzip
+URL:		http://www.dokuwiki.org/plugin:odt
 Requires:	dokuwiki >= 20070626
 Requires:	php-common >= 4:5.0
 BuildArch:	noarch
@@ -38,15 +38,14 @@ Podpowiedź: Open Office pozwala także na eksportowanie do PDF.
 
 %prep
 %setup -qc
-mv %{plugin}/* .
-
+mv dokuwiki-odt-dokuwiki-odt/* .
 %patch0 -p1
 %patch1 -p1
 
 version=$( awk '/^date/{print $2}' info.txt)
 if [ "$(echo "$version" | tr -d -)" != %{version} ]; then
 	: %%{version} mismatch
-	exit 1
+#	exit 1
 fi
 
 rm -f ZipLib.class.php
