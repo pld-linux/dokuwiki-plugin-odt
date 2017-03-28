@@ -1,19 +1,19 @@
+%define		subver	2017-02-18
+%define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		odt
-Summary:	DokuWiki odt (Open Document Text) Export Plugin
+%define		php_min_version 5.5
+Summary:	OpenOffice.org/LibreOffice.org Export
 Summary(pl.UTF-8):	Wtyczka do eksportowania plików odt (Open Document Text)
 Name:		dokuwiki-plugin-%{plugin}
-Version:	20110616
-Release:	2
+Version:	%{ver}
+Release:	1
 License:	GPL v2
 Group:		Applications/WWW
-#Source0:	http://aurelien.bompard.org/projects/files/dokuwiki-odt/dokuwiki-odt-%{version}.zip
-Source0:	http://gitorious.org/dokuwiki-odt/dokuwiki-odt/archive-tarball/master#/%{name}-%{version}.tgz
-# Source0-md5:	a30fe453e3036014c82e5b5e9a7c47b0
-Patch0:		dokuwiki-ziplib.patch
-Patch1:		geshi.patch
-URL:		http://www.dokuwiki.org/plugin:odt
-Requires:	dokuwiki >= 20070626
-Requires:	php(core) >= 5.0
+Source0:	https://github.com/LarsGit223/dokuwiki-plugin-odt/archive/%{subver}/%{name}-%{ver}.tar.gz
+# Source0-md5:	6768d4d2e55c676bc46ef877abaeeb34
+URL:		https://www.dokuwiki.org/plugin:odt
+Requires:	dokuwiki >= 20150810
+Requires:	php(core) >= %{php_min_version}
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,10 +24,12 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 This plugin allows you to export a page to the OpenDocument format
-used by Open Office and other word processors. This is especially
-useful when you need to give a single page to a customer
+used by OpenOffice.org, LibreOffice.org and other word processors.
 
-Hint: Open Office can also export to PDF.
+This is especially useful when you need to print or to give a single
+page to a customer.
+
+Hint: OpenOffice.org can also export to PDF.
 
 %description -l pl.UTF-8
 Ta wtyczka pozwala na eksportowanie strony do formatu OpenDocument,
@@ -37,24 +39,22 @@ sytuacji w której musisz dać pojedyńczą stronę klientowi.
 Podpowiedź: Open Office pozwala także na eksportowanie do PDF.
 
 %prep
-%setup -qc
-mv dokuwiki-odt-dokuwiki-odt/* .
-%patch0 -p1
-%patch1 -p1
+%setup -q -n %{name}-%{subver}
 
-version=$( awk '/^date/{print $2}' info.txt)
+%build
+version=$(awk '/^date/{print $2}' plugin.info.txt)
 if [ "$(echo "$version" | tr -d -)" != %{version} ]; then
 	: %%{version} mismatch
-#	exit 1
+	exit 1
 fi
-
-rm -f ZipLib.class.php
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{plugindir}
-cp -a conf lang *.php *.png *.xml info.txt $RPM_BUILD_ROOT%{plugindir}
-rm -f $RPM_BUILD_ROOT%{plugindir}/{ChangeLog,.gitignore}
+cp -a . $RPM_BUILD_ROOT%{plugindir}
+%{__rm} $RPM_BUILD_ROOT%{plugindir}/deleted.files
+%{__rm} $RPM_BUILD_ROOT%{plugindir}/phpdoc.dist.xml
+%{__rm} $RPM_BUILD_ROOT%{plugindir}/{ChangeLog,README}.txt
 
 %find_lang %{name}.lang
 
@@ -72,8 +72,13 @@ fi
 %doc ChangeLog.txt README.txt
 %defattr(644,root,root,755)
 %dir %{plugindir}
-%{plugindir}/*.txt
-%{plugindir}/*.png
-%{plugindir}/*.xml
+%{plugindir}/*.css
 %{plugindir}/*.php
+%{plugindir}/*.png
+%{plugindir}/*.txt
+%{plugindir}/*.xml
+%{plugindir}/ODT
+%{plugindir}/action
 %{plugindir}/conf
+%{plugindir}/helper
+%{plugindir}/renderer
