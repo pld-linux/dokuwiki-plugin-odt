@@ -6,7 +6,7 @@ Summary:	OpenOffice.org/LibreOffice.org Export
 Summary(pl.UTF-8):	Wtyczka do eksportowania plików odt (Open Document Text)
 Name:		dokuwiki-plugin-%{plugin}
 Version:	%{ver}
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	https://github.com/LarsGit223/dokuwiki-plugin-odt/archive/%{subver}/%{name}-%{ver}.tar.gz
