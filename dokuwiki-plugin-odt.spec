@@ -1,4 +1,4 @@
-%define		subver	2017-02-18
+%define		subver	2023-03-03
 %define		ver		%(echo %{subver} | tr -d -)
 %define		plugin		odt
 %define		php_min_version 5.5
@@ -6,11 +6,11 @@ Summary:	OpenOffice.org/LibreOffice.org Export
 Summary(pl.UTF-8):	Wtyczka do eksportowania plików odt (Open Document Text)
 Name:		dokuwiki-plugin-%{plugin}
 Version:	%{ver}
-Release:	2
+Release:	1
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	https://github.com/LarsGit223/dokuwiki-plugin-odt/archive/%{subver}/%{name}-%{ver}.tar.gz
-# Source0-md5:	6768d4d2e55c676bc46ef877abaeeb34
+# Source0-md5:	60d0e1cf734810898d75637dad6a3191
 URL:		https://www.dokuwiki.org/plugin:odt
 Requires:	dokuwiki >= 20150810
 Requires:	php(core) >= %{php_min_version}
@@ -20,7 +20,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		dokuconf	/etc/webapps/dokuwiki
 %define		dokudir		/usr/share/dokuwiki
 %define		plugindir	%{dokudir}/lib/plugins/%{plugin}
-%define		find_lang 	%{_usrlibrpm}/dokuwiki-find-lang.sh %{buildroot}
+%define		find_lang 	%{_rpmconfigdir}/dokuwiki-find-lang.sh %{buildroot}
 
 %description
 This plugin allows you to export a page to the OpenDocument format
@@ -75,6 +75,7 @@ fi
 %{plugindir}/*.css
 %{plugindir}/*.php
 %{plugindir}/*.png
+%{plugindir}/*.svg
 %{plugindir}/*.txt
 %{plugindir}/*.xml
 %{plugindir}/ODT
